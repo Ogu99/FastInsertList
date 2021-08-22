@@ -1,5 +1,3 @@
-package collections;
-
 import java.io.Serializable;
 import java.util.AbstractSequentialList;
 import java.util.Arrays;
@@ -55,8 +53,8 @@ import java.util.function.Consumer;
  * @param <E> - The type of the elements inside this list.
  */
 public class FastInsertList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, Serializable {
-	private static final long serialVersionUID = 2799870846144770308L;
-	private transient Node<E> head; //The head (first element) of the list.
+    private static final long serialVersionUID = 2799870846144770308L;
+    private transient Node<E> head; //The head (first element) of the list.
     private transient Node<E> tail; //The tail (last element) of the list.
     private transient int size;     //The current size of the list.
 
@@ -246,7 +244,7 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
         E remove = target.elements[i - target.startIndex];
 
         @SuppressWarnings("unchecked")
-		E[] newArr = (E[]) new Object[target.elements.length - 1];
+        E[] newArr = (E[]) new Object[target.elements.length - 1];
         System.arraycopy(target.elements, 0, newArr, 0, i - target.startIndex);
         System.arraycopy(target.elements, i - target.startIndex + 1, newArr, i - target.startIndex,
                 newArr.length - (i - target.startIndex));
@@ -422,10 +420,10 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
         return removeFirst();
     }
 
-	@Override
-	public E getFirst() {
+    @Override
+    public E getFirst() {
         return head.elements[0];
-	}
+    }
 
     @Override
     public E getLast() {
@@ -443,9 +441,9 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
     }
 
     @Override
-    public E peekFirst() {
-		if (isEmpty())
-		    return null;
+    public E peekFirst() { 
+        if (isEmpty())
+            return null;
 	
         return getFirst();
     }
@@ -514,10 +512,10 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
         return new Itr();
     }
 	
-	@Override
-	public Iterator<E> descendingIterator() {
-		return new DescendingItr();
-	}
+    @Override
+    public Iterator<E> descendingIterator() {
+	return new DescendingItr();
+    }
     
     @Override
     public ListIterator<E> listIterator(int index) {
@@ -585,7 +583,7 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
             return cursor != size;
         }
 
-		@Override
+	@Override
         public E next() {
             checkForComodification();
             int i = cursor;
@@ -614,7 +612,7 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
             }
         }
         
-		@Override
+	@Override
         public void forEachRemaining(Consumer<? super E> action) {
             Objects.requireNonNull(action);
             final int size = FastInsertList.this.size;
@@ -653,8 +651,8 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
             return cursor != 0;
         }
 
-		@Override
-		public E previous() {
+	@Override
+	public E previous() {
             checkForComodification();
             int i = cursor - 1;
             if (i < 0)
@@ -664,7 +662,7 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
                 throw new ConcurrentModificationException();
             cursor = i;
             return (E) elementData[lastRet = i];
-		}
+	}
 
         @Override
         public int nextIndex() {
@@ -678,7 +676,7 @@ public class FastInsertList<E> extends AbstractSequentialList<E> implements List
 
         @Override
         public void set(E e) {
-        	if (lastRet < 0)
+            if (lastRet < 0)
                 throw new IllegalStateException();
             checkForComodification();
 
